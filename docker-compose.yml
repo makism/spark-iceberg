@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  jupyterlab:
+    image: jupyterlab:latest
+    container_name: jupyterlab
+    build:
+      context: services/jupyterlab/
+      dockerfile: Dockerfile
+    env_file:
+      - ./services/jupyterlab/.env
+    volumes:
+      - ./services/jupyterlab/notebooks/:/opt/workspace/
+      - ./data/:/data/
+      - ./warehouse/:/warehouse
+    ports:
+      - 8888:8888
